@@ -1,0 +1,5 @@
+# Log files
+*.log
+
+# Output file
+pi.txt
