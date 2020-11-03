@@ -31,13 +31,25 @@ O agente repete isso até encontrar uma parede, ficar preso ou encontrar o objet
 
 ### 3. Resultados
 
-Os resultados encontrados foram um pouco inesperados. Apesar de que os arquivos gerados com a política aprendida foram sempre satisfatórios, os gráficos de aprendizado gerados para diversos valores de $\alpha$ e $\gamma$ sempre se pareciam com as imagens abaixo.
+#### 3.1 Política
 
-![image info](./g01.png)
-![image info](./g05.png)
+A política encontrada foi satisfatória. Analisando o arquivo pi.txt, é possível perceber que o agente está convergindo para a política ótima de acordo com as recompensas que ele recebe em cada posição do mapa. 
 
-epsilon decaindo fica preso entre checkpoints e o episodio nao termina
+#### 3.2 Gráficos de Aprendizado
+
+Os resultados encontrados nesta parte do projeto foram um pouco inesperados. Apesar de que os arquivos gerados com a política aprendida foram sempre satisfatórios como dito acima, os gráficos de aprendizado gerados para diversos valores de $\alpha$ e $\gamma$ sempre se pareciam com as imagens abaixo. 
+
+![image info](./img/g01.png)
+![image info](./img/g05.png)
+
+O esperado era que as recompensas fossem aumentando gradualmente a cada episódio até convergir para um ponto máximo, mas isso não foi observado.
 
 ### 4. Discussão dos Resultados
 
-Surgimos com algumas proposições para o motivo dos resultados encontrados.
+Surgimos com algumas suposições para o motivo dos resultados encontrados. Sobre o formato do gráfico, é muito possível que isso tenho sido causado pelo valor constante do $\epsilon$. O comportamento dele se mostrou o mesmo independente de quão grande ou pequeno ele era.
+
+Tentamos fazer com $\epsilon = 0$, mas devido ao valor da recompensa em pontos de localização ser $1$, nosso agente ficava preso em loops entre dois desses pontos, buscando maximizar sua recompensa final.
+
+O valor das recompensas especificado gerou esse tipo de problema, por isso, o agente mostrou melhores resultados alterando o valor da recompensa em pontos de localização para $0$.
+
+Também tentamos fazer um $\epsilon$ com decaimento, mas isso não teve muito impacto nos gráficos de aprendizado, apenas tornando sua amplitude menor.
